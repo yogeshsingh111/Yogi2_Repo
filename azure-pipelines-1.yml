@@ -1,14 +1,21 @@
 trigger: none
 
-pool:
-  TechORG-AgentPool
+pool: TechORG-AgentPool
 
+steps:
 
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
 
 
-    
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    backendServiceArm: 'TechORG_SC'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'tfstate.tfstate'
 
 
