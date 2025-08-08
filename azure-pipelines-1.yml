@@ -1,0 +1,14 @@
+trigger: none
+
+pool:
+  TechORG-AgentPool
+
+
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+
+
+    
+
+
