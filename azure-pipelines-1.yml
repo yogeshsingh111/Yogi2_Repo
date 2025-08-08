@@ -13,9 +13,8 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: '$(System.DefaultWorkingDirectory)'
     backendServiceArm: 'TechORG_SC'
+    backendAzureRmResourceGroupName: 'aon-rg2'
+    backendAzureRmStorageAccountName: 'aonsa2'
     backendAzureRmContainerName: 'tfstate'
-    backendAzureRmKey: 'tfstate.tfstate'
-
-
+    backendAzureRmKey: 'techorg.tfstate'
