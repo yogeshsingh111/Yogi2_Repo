@@ -10,6 +10,7 @@ steps:
 
 
 - task: TerraformTask@5
+  displayName: Terraform init
   inputs:
     provider: 'azurerm'
     command: 'init'
@@ -18,3 +19,16 @@ steps:
     backendAzureRmStorageAccountName: 'aonsa2'
     backendAzureRmContainerName: 'tfstate'
     backendAzureRmKey: 'techorg.tfstate'
+
+- task: TerraformTask@5
+  displayName: Terraform validate
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+
+- task: TerraformTask@5
+  displayName: Terraform Plan
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'TechORG_SC'
