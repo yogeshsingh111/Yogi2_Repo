@@ -1,36 +1,29 @@
-module "rg" {
-  source              = "./Module/resource_group"
-  resource_group_name = var.resource_group_name
-  location            = var.location
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "4.39.0"
+    }
+  }
 
 }
 
-module "sa" {
-    source = "./Module/storage_account"
-  depends_on = [ module.rg ]
-  storage_name = var.storage_name
-  location = var.location
-  resource_group_name = var.resource_group_name
+provider "azurerm" {
+    features {
+    }
+  subscription_id = "c316f505-7597-4175-b5db-d2949009d506"
 }
 
-module "vnet" {
-  source                = "./module/virtual_network"
-  depends_on = [ module.rg ]
-  vnet_name                  = var.vnet_name
-  location              = var.location
-  resource_group_name   = var.resource_group_name
-  subnet_name           = var.subnet_name
-  address_space = var.address_space
-  subnet_address_prefix = var.address_prefix
+resource "azurerm_resource_group" "rg" {
+  name     = "ace-rg"
+  location = "West Europe"
+
 }
 
-module "vm" {
-  source              = "./Module/virtual_machine"
-  depends_on = [ module.vnet ]
-  vm_name             = var.vm_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  admin_username      = var.admin_username
-  admin_password      = var.admin_password
-  subnet_id           = module.vnet.subnet_id
+resource "azurerm_storage_account" "sa" {
+  name                     = "acesa"
+  resource_group_name      = azurerm_resource_group.rg.name
+  location                 = azurerm_resource_group.rg.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
 }
