@@ -31,5 +31,6 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'plan'
+    commandOptions: '-var "address_prefix=10.0.0.0/16"'
     environmentServiceNameAzureRM: 'TechORG_SC'
   timeoutInMinutes: 30
