@@ -32,3 +32,4 @@ steps:
     provider: 'azurerm'
     command: 'plan'
     environmentServiceNameAzureRM: 'TechORG_SC'
+  timeoutInMinutes: 30
