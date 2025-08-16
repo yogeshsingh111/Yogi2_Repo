@@ -1,4 +1,4 @@
-variable "resource_group_name" {}
+cdvariable "resource_group_name" {}
 variable "storage_name" {}
 variable "location" {}
 variable "vnet_name" {}
